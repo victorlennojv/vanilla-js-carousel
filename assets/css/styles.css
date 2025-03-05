@@ -53,13 +53,26 @@ section {
 
       & .item-img {
         position: absolute;
-        top: 50%;
-        width: 70%;
+        top: 40%;
+        left: 10%;
+        width: 200px;
         transform: translateY(-50%);
 
         & img {
           width: 100%;
-          transform: rotate(15deg);
+          transform: rotate(-15deg);
+        }
+
+        &::before {
+          content: '';
+          position: absolute;
+          background-color: #000;
+          width: 100%;
+          height: 50px;
+          top: 80%;
+          left: 50px;
+          border: 50%;
+          filter: blur(50px);
         }
       }
 
@@ -75,7 +88,7 @@ section {
         gap: 20px;
 
         & .content-information {
-          font-weight: bold;
+          font-weight: 500;
           font-family: "League Gothic", sans-serif;
         }
 
@@ -90,7 +103,7 @@ section {
           font-size: 12px;
           text-align: right;
           max-width: 400px;
-          text-shadow: 1px 2px 3px #000;
+          text-shadow: 1px 2px 6px #000;
         }
 
         & .content-button {
@@ -117,6 +130,7 @@ section {
   }
 
   .arrows {
+    z-index: 1;
     display: flex;
     justify-content: space-between;
     position: absolute;
@@ -147,6 +161,7 @@ section {
   }
 
   .indicators {
+    z-index: 0;
     position: absolute;
     top: 50%;
     height: 200px;
@@ -178,6 +193,73 @@ section {
       & .active {
         background-color: #FFF;
       }
+    }
+  }
+}
+
+section {
+  & .list {
+    --calculation: 1;
+
+    & .item {
+      transform: translateX(calc(100vw * var(--calculation)));
+      transition: 0.5s;
+      opacity: 0;
+
+      & .item-img {
+        transform: rotate(-20deg);
+        transition: 0.5s;
+        transition-delay: 0.5s;
+      }
+
+      & .content {
+
+        & .content-information,
+        h2,
+        .content-description,
+        .content-button {
+          transform: translateX(calc(200vw * var(--calculation)));
+          transition: 0.7s;
+          transition-delay: 0.3s;
+          opacity: 0;
+        }
+
+        & h2 {
+          transition-delay: 0.5s;
+        }
+
+        & .content-description {
+          transition-delay: 0.7s;
+        }
+
+        & .content-information {
+          transition-delay: 0.9s;
+        }
+      }
+    }
+
+    & .active {
+      transform: translateX(0);
+      transition: 0.5s;
+      opacity: 1;
+
+      & .item-img {
+        transform: rotate(20deg);
+        transition: 0.5s;
+        transition-delay: 0.5s;
+      }
+
+      & .content {
+
+        & .content-information,
+        h2,
+        .content-description,
+        .content-button {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
     }
   }
 }
